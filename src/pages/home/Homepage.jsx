@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Swal} from 'sweetalert2';
 
 function App() {
   const API_URL = "http://localhost:5038/";
@@ -32,6 +33,42 @@ function App() {
     alert(data);
     refreshList();
   };
+
+  // const deleteData = async (id) => {
+  //   try {
+  //     const result = await Swal.fire({
+  //       title: 'Are you sure?',
+  //       text: "You won't be able to revert this!",
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#3085d6',
+  //       cancelButtonColor: '#d33',
+  //       confirmButtonText: 'Yes, delete it!'
+  //     });
+  
+  //     if (result.isConfirmed) {
+  //       const response = await fetch(API_URL + "api/Assest/deleteemployee?id=" + id, {
+  //         method: 'DELETE',
+  //       });
+  //       const data = await response.json();
+  
+  //       Swal.fire(
+  //         'Deleted!',
+  //         'Your file has been deleted.',
+  //         'success'
+  //       );
+  
+  //       refreshList();
+  //     }
+  //   } catch (error) {
+  //     Swal.fire(
+  //       'Error!',
+  //       'There was a problem deleting the data.',
+  //       'error'
+  //     );
+  //   }
+  // };
+  
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-10">

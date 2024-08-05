@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { submitForm } from './formhandler';
+import { refreshList, submitForm } from './formhandler';
 import { useNavigate } from 'react-router-dom';
 
 function EmployeeForm() {
-  const [showMonitorWidget, setShowMonitorWidget] = useState(false);
-  const [showLaptopWidget, setShowLaptopWidget] = useState(false);
-  const [showKeyboardWidget, setShowKeyboardWidget] = useState(false);
-  const [showMouseWidget, setShowMouseWidget] = useState(false);
-
   const [empid, setEmpid] = useState('');
   const [empname, setEmpname] = useState('');
   const [deptname, setDeptname] = useState('');
@@ -49,6 +44,7 @@ function EmployeeForm() {
                mousebrand, mousemodel, mouseID, mousetype, mousesn
             );
             history.push('/');
+            
   };
 
   return (
@@ -108,6 +104,108 @@ function EmployeeForm() {
                   </div>
                 </div>
               </div>
+  </div>
+
+  <input
+    type="radio"
+    name="my_tabs_2"
+    role="tab"
+    className="tab"
+    aria-label="Latop Details"
+     />
+  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+        
+    <div className="widget">
+      
+        <div className="flex">
+          <div className="flex-1 py-5 pl-5 overflow-hidden">
+            <h1 className="inline text-2xl font-semibold leading-none">Laptop Details</h1>
+          </div>
+        </div>
+        <div className="px-5 pb-5">
+          <div className="flex">
+            <div className="flex-grow pr-2">
+              <input
+                type="text"
+                placeholder="HostName"
+                value={laphost}
+                onChange={(e) => setLaphost(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+            <div className="flex-grow pr-2">
+              <input
+                type="text"
+                placeholder="Model"
+                value={lapmodel}
+                onChange={(e) => setLapmodel(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white   focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+            <div className="flex-grow">
+              <input
+                type="text"
+                placeholder="Service Tag"
+                value={servicetag}
+                onChange={(e) => setServicetag(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white   focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Processor"
+            value={Processor}
+            onChange={(e) => setProcessor(e.target.value)}
+            className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white   focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+          />
+
+          <div className="flex">
+            <div className="flex-grow w-1/4 pr-2">
+              <input
+                type="text"
+                placeholder="HDD"
+                value={HDD}
+                onChange={(e) => setHDD(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+            <div className="flex-grow">
+              <input
+                type="text"
+                placeholder="RAM"
+                value={RAM}
+                onChange={(e) => setRAM(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+          </div>
+
+          <div className="flex pb-3">
+            <div className="flex-grow w-1/4 pr-2">
+              <h3 className="pl-1 pt-2">Warrenty End Date</h3>
+              <input
+                type="date"
+                placeholder="Warrenty End Date"
+                value={warrenty}
+                onChange={(e) => setWarrenty(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+            <div className="flex-grow">
+              <h3 className="pl-1 pt-2">Assigned Date</h3>
+              <input
+                type="date"
+                placeholder="Assigned Date"
+                value={assigned}
+                onChange={(e) => setAssigned(e.target.value)}
+                className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+              />
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 
   <input
@@ -229,17 +327,18 @@ function EmployeeForm() {
                     
             </div>
   </div>
-          </div>
-              
-              <hr className="mt-4" />
 
-              
-  
-                
 
-              {showMouseWidget && (
-                <div className="widget">
-                  <div className="mt-5 bg-white rounded-lg shadow">
+  <input
+    type="radio"
+    name="my_tabs_2"
+    role="tab"
+    className="tab"
+    aria-label="Mouse Details"
+     />
+  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <div className="widget">
+                  
                     <div className="flex">
                       <div className="flex-1 py-5 pl-5 overflow-hidden">
                         <h1 className="inline text-2xl font-semibold leading-none">Mouse</h1>
@@ -283,11 +382,15 @@ function EmployeeForm() {
                         </div>
                       </div>
                     </div>
-                    <hr className="mt-4" />
-                  </div>
-                </div>
-              )}
+                    
+                  
+    </div>
+  </div>
+          </div>
+         
             </div>
+            
+            
             <div className="flex justify-center p-3">
                 <div className="flex-initial pl-3">
                     <button
