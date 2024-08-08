@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { refreshList, submitForm } from './formhandler';
 import { useNavigate } from 'react-router-dom';
 
+
 function EmployeeForm() {
   const [empid, setEmpid] = useState('');
   const [empname, setEmpname] = useState('');
@@ -34,6 +35,24 @@ function EmployeeForm() {
   const [mousesn, setMousesn] = useState('');
 
   const history = useNavigate();
+
+  const goToLaptop = () => {
+    document.querySelector('input[aria-label="Laptop Details"]').checked = true;
+  };
+
+  const goTomonitor = () => {
+    document.querySelector('input[aria-label="Monitor Details"]').checked = true;
+  };
+
+  const goTokeyorad = () => {
+    document.querySelector('input[aria-label="Keyboard Details"]').checked = true;
+  };
+
+  const goTomouse = () => {
+    document.querySelector('input[aria-label="Mouse Details"]').checked = true;
+  };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +92,7 @@ function EmployeeForm() {
                       value={empid} 
                       onChange={(e) => setEmpid(e.target.value)} 
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    />
+                      required />
                   </div>
                   <div className="flex-grow w-1/4 pr-2">
                     <input 
@@ -82,7 +101,7 @@ function EmployeeForm() {
                       value={deptname} 
                       onChange={(e) => setDeptname(e.target.value)} 
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    />
+                      required />
                   </div>
                 </div>
                 <input 
@@ -91,7 +110,7 @@ function EmployeeForm() {
                   value={empname} 
                   onChange={(e) => setEmpname(e.target.value)} 
                   className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                />
+                  required />
                 <div className="flex">
                   <div className="flex-grow w-1/4 pr-2">
                     <input 
@@ -100,9 +119,18 @@ function EmployeeForm() {
                       value={seatno} 
                       onChange={(e) => setSeatno(e.target.value)} 
                       className="text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    />
+                      required />
                   </div>
                 </div>
+              <div className="flex justify-center p-3">
+              <button
+                    type="button"
+                    className="flex items-center px-6 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-900 transition duration-300 transform active:scale-95 ease-in-out"
+                    onClick={goToLaptop}
+                >
+                Next
+                </button>
+              </div>
               </div>
   </div>
 
@@ -111,7 +139,7 @@ function EmployeeForm() {
     name="my_tabs_2"
     role="tab"
     className="tab"
-    aria-label="Latop Details"
+    aria-label="Laptop Details"
      />
   <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
         
@@ -205,6 +233,16 @@ function EmployeeForm() {
             </div>
           </div>
         </div>
+
+        <div className="flex justify-center p-3">
+              <button
+                    type="button"
+                    className="flex items-center px-6 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-900 transition duration-300 transform active:scale-95 ease-in-out"
+                    onClick={goTomonitor}
+                >
+                Next
+                </button>
+              </div>
     </div>
   </div>
 
@@ -274,6 +312,16 @@ function EmployeeForm() {
                           </div>
                         </div>
                       </div>
+
+                      <div className="flex justify-center p-3">
+              <button
+                    type="button"
+                    className="flex items-center px-6 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-900 transition duration-300 transform active:scale-95 ease-in-out"
+                    onClick={goTokeyorad}
+                >
+                Next
+                </button>
+              </div>
                   </div>
   </div>
 
@@ -323,6 +371,16 @@ function EmployeeForm() {
                             />
                           </div>
                           </div>
+                    </div>
+
+                    <div className="flex justify-center p-3">
+              <button
+                    type="button"
+                    className="flex items-center px-6 py-2.5 font-medium tracking-wide text-white capitalize bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-900 transition duration-300 transform active:scale-95 ease-in-out"
+                    onClick={goTomouse}
+                >
+                Next
+                </button>
                     </div>
                     
             </div>
@@ -382,16 +440,8 @@ function EmployeeForm() {
                         </div>
                       </div>
                     </div>
-                    
-                  
-    </div>
-  </div>
-          </div>
-         
-            </div>
-            
-            
-            <div className="flex justify-center p-3">
+
+                    <div className="flex justify-center p-3">
                 <div className="flex-initial pl-3">
                     <button
                     type="submit"
@@ -401,7 +451,12 @@ function EmployeeForm() {
           Submit
         </button>
       </div>
-            </div>
+            </div>         
+    </div>
+  </div>
+          </div>
+          </div>
+            
           </form>
         </section>
       </div>

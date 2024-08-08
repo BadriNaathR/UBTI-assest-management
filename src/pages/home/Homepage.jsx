@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {Swal} from 'sweetalert2';
+import { useNavigate , Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 function App() {
   const API_URL = "http://localhost:5038/";
@@ -15,6 +16,7 @@ function App() {
     const response = await fetch(API_URL + "api/Assest/employee");
     const data = await response.json();
     setNotes(data);
+    console.log(data);
   };
 
   const addNewPage = () => {
@@ -25,51 +27,42 @@ function App() {
     // TO DO: implement update logic
   };
 
+  // const deleteData = async (id) => {
+  //   const response = await fetch(API_URL + "api/Assest/deleteemployee?id=" + id, {
+  //     method: 'DELETE',
+  //   });
+  //   const data = await response.json();
+  //   alert(data);
+  //   refreshList(); `/api/Assest/deleteemployee?id=${id}`
+  //                   api/Assest/deleteemployee?id=" + id
+  // };
+
   const deleteData = async (id) => {
-    const response = await fetch(API_URL + "api/Assest/deleteemployee?id=" + id, {
+    const response = await fetch(API_URL + `api/Assest/deleteemployee?id=${id}`, { // "api/Assest/deleteemployee?id=" + id, {
       method: 'DELETE',
     });
     const data = await response.json();
-    alert(data);
+    Swal.fire('Deleted!', data, 'success');
     refreshList();
   };
 
-  // const deleteData = async (id) => {
-  //   try {
-  //     const result = await Swal.fire({
-  //       title: 'Are you sure?',
-  //       text: "You won't be able to revert this!",
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#3085d6',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Yes, delete it!'
-  //     });
-  
-  //     if (result.isConfirmed) {
-  //       const response = await fetch(API_URL + "api/Assest/deleteemployee?id=" + id, {
-  //         method: 'DELETE',
-  //       });
-  //       const data = await response.json();
-  
-  //       Swal.fire(
-  //         'Deleted!',
-  //         'Your file has been deleted.',
-  //         'success'
-  //       );
-  
-  //       refreshList();
-  //     }
-  //   } catch (error) {
-  //     Swal.fire(
-  //       'Error!',
-  //       'There was a problem deleting the data.',
-  //       'error'
-  //     );
-  //   }
-  // };
-  
+  const confirmDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteData(id);
+      }
+    });
+  };
 
+  
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-10">
       <h1 className="flex justify-center text-2xl font-semibold leading-none">Employee Details</h1>
@@ -103,7 +96,7 @@ function App() {
           {notes.map((note) => (
             <tr key={note._id} className="bg-white hover:bg-gray-50">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:black-white">
-                <a href="/abc">{note.empname}</a>
+              <Link to={`/employee/${note._id}`}>{note.empname}</Link>
               </th>
               <td className="px-6 py-4">
                 {note.empid}
@@ -114,11 +107,12 @@ function App() {
               <td className="px-6 py-4">
                 {note.seatno}
               </td>
+              
               <td className="px-6 py-4 text-right">
                 <div className="flex">
                   <div className="pr-5">
                     <button className="block text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                      onClick={() => deleteData(note._id)}>
+                      onClick={() => confirmDelete(note._id)}>
                       Delete
                     </button>
                   </div>

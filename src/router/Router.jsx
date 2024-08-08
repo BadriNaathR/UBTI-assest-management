@@ -4,6 +4,9 @@ import {
 import Main from "../layout/Main";
 import EmployeeForm from "../components/AddNew";
 import Home from "../pages/home/Homepage";
+import Main1 from "../sample/main1";
+import Get from "../sample/get1";
+import EmployeeDetailsPage from "../Employee/EmployeeDetailsPage";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
         {
           path : "/assets",
           element : <EmployeeForm/>
+        },
+        {
+          path : "/sample",
+          element : <Main1/>
+        },
+        {
+          path : "/get",
+          element : <Get/>
+        },
+        {
+          path : "/employee/:id",
+          element : <EmployeeDetailsPage/>
         }
       ]
     },
